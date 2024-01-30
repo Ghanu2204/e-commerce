@@ -15,17 +15,6 @@ const CakeSection = ({ handleClick }) => {
               the best price.
             </p>
           </div>
-          <div className="space-x-4 mt-8 lg:mt-0">
-            <button className="px-4 py-1 rounded-full hover:text-[#001F3F] focus:bg-[#001F3F] focus:text-white dark:focus:text-black dark:focus:bg-[#87CEEB] dark:hover:text-[#87CEEB]">
-              Cake
-            </button>
-            <button className="px-4 py-1 rounded-full hover:text-[#001F3F] focus:bg-[#001F3F] focus:text-white dark:focus:text-black dark:focus:bg-[#87CEEB] dark:hover:text-[#87CEEB]">
-              Bread & Bakery
-            </button>
-            <button className="px-4 py-1 rounded-full hover:text-[#001F3F] focus:bg-[#001F3F] focus:text-white dark:focus:text-black dark:focus:bg-[#87CEEB] dark:hover:text-[#87CEEB]">
-              Dairy
-            </button>
-          </div>
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 pt-8 gap-2">
           <div>
@@ -50,7 +39,7 @@ const CakeSection = ({ handleClick }) => {
                   {data.name}
                 </h3>
                 <h3 className="text-2xl md:text-base lg:text-xl font-medium ">
-                ₹{data.price}
+                  ₹{data.price}
                 </h3>
                 <button
                   onClick={() => handleClick(data)}

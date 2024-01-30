@@ -75,16 +75,21 @@ const Cart = ({ cart, setCart }) => {
             <div>
               <button
                 onClick={() => handleRemove(item.id)}
-                className="bg-gradient-to-r from-[#0023FF] to-[#3342a1] text-white hover:scale-105 rounded-full p-1  "
+                className="bg-gradient-to-r from-[#0023FF] to-[#3342a1] text-white hover:scale-105 rounded-full p-1"
               >
                 Remove
               </button>
             </div>
           </div>
         ))}
-        <div className="flex justify-between text-xl xl:text-2xl font-bold">
-          <span>Total Price of Your Cart</span>
-          <span>Rs - {price}</span>
+        <div className="flex flex-col sm:flex-row justify-between text-xl xl:text-2xl font-bold">
+          <div className="flex items-center gap-2">
+            <span>Total Price of Your Cart :-</span>
+            <span>₹{price}</span>
+          </div>
+          <button className="bg-[#87CEEB] dark:bg-[#001F3F] rounded-full px-2 font-medium">
+            Payment
+          </button>  
         </div>
       </div>
     </div>
