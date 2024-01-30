@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Cart = ({ cart, setCart }) => {
   const [price, setPrice] = useState(0);
@@ -56,17 +57,17 @@ const Cart = ({ cart, setCart }) => {
             </div>
             <div className="flex gap-1 lg:text-xl">
               <button
-                onClick={() => handleChange(item, +1)}
+                onClick={() => handleChange(item, -1)}
                 className="p-1 font-bold "
               >
-                +
+                -
               </button>
               <button className="cursor-default">{item.amount}</button>
               <button
-                onClick={() => handleChange(item, -1)}
+                onClick={() => handleChange(item, +1)}
                 className="px-2 py-1 font-bold "
               >
-                -
+                +
               </button>
             </div>
             <div>
@@ -87,9 +88,9 @@ const Cart = ({ cart, setCart }) => {
             <span>Total Price of Your Cart :-</span>
             <span>₹{price}</span>
           </div>
-          <button className="bg-[#87CEEB] dark:bg-[#001F3F] rounded-full px-2 font-medium">
+          <Link className="bg-[#87CEEB] dark:bg-[#001F3F] rounded-full px-2 font-medium">
             Payment
-          </button>  
+          </Link>
         </div>
       </div>
     </div>
