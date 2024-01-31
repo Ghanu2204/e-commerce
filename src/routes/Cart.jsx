@@ -35,7 +35,7 @@ const Cart = ({ cart, setCart }) => {
   });
 
   return (
-    <div className="bg-stone-100 dark:bg-gray-800 dark:text-white duration-200">
+    <div className="bg-stone-100 dark:bg-gray-800 dark:text-white duration-200 h-[87vh] sm:h-[93vh]">
       <div className="flex justify-center py-4">
         <h1 className="font-bold text-3xl underline">Your Cart</h1>
       </div>
@@ -88,7 +88,7 @@ const Cart = ({ cart, setCart }) => {
             <span>Total Price of Your Cart :-</span>
             <span>₹{price}</span>
           </div>
-          <Link className="bg-[#87CEEB] dark:bg-[#001F3F] rounded-full px-2 font-medium">
+          <Link to="/payment" className="bg-[#87CEEB] dark:bg-[#001F3F] text-center rounded-full px-2 font-medium">
             Payment
           </Link>
         </div>

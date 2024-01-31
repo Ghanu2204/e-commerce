@@ -11,7 +11,7 @@ const Menu = [
   },
   {
     id: 3,
-    name: "Offers",
+    name: "Dairy",
     link: "/#",
   },
   {
