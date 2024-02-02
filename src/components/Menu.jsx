@@ -11,17 +11,12 @@ const Menu = [
   },
   {
     id: 3,
-    name: "Dairy",
+    name: "About Us",
     link: "/#",
   },
   {
     id: 4,
-    name: "Fruits",
-    link: "/#",
-  },
-  {
-    id: 5,
-    name: "Bread",
+    name: "Contact",
     link: "/#",
   },
 ];

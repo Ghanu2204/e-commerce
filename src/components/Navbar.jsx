@@ -31,7 +31,7 @@ const Navbar = ({ size }) => {
           </div>
           <div className="flex justify-center">
             <ul
-              className={`flex flex-col md:flex-row bg-[#c5efff] md:bg-transparent dark:bg-[#1f2c3a] dark:md:bg-transparent absolute md:relative items-end right-0 md:top-0 md:items-center 
+              className={`flex flex-col md:flex-row bg-[#c5efff] md:bg-transparent dark:bg-[#1f2c3a] dark:md:bg-transparent absolute md:relative items-end right-0 md:top-0 md:items-center whitespace-nowrap rounded-md
               md:z-auto z-10 transition-all duration-300 px-4 w-1/3 h-80 md:h-auto justify-evenly ease-in-out gap-2 lg:gap-4
                ${isOpen ? "top-14" : "-top-96"}`}
             >
@@ -62,7 +62,7 @@ const Navbar = ({ size }) => {
             <Link
               to="/cart"
               className="cart bg-gradient-to-r from-[#0023FF] to-[#3342a1] transition-all duration-200 pl-4 py-1
-               text-white rounded-full flex items-center group"
+               text-white rounded-full flex items-center"
             >
               <span>
                 <IoCartSharp className="text-xl text-white drop-shadow-sm cursor-pointer" />
