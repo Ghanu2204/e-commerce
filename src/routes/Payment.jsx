@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsCashCoin } from "react-icons/bs";
 import Swal from "sweetalert2";
 
-const Payment = () => {
+const Payment = ({ cart }) => {
+  const [price, setPrice] = useState(0);
+
+  const handlePrice = () => {
+    let ans = 0;
+    cart.map((item) => (ans += item.price * item.amount));
+    setPrice(ans);
+  };
+  useEffect(() => {
+    handlePrice();
+  });
   const [formData, setFormData] = useState({
     fName: "",
     lName: "",
@@ -10,17 +20,7 @@ const Payment = () => {
     email: "",
     address: "",
     pincode: "",
-    // payment: "",
-  });
-
-  const [validationMessages, setValidationMessages] = useState({
-    fName: "",
-    lName: "",
-    contact: "",
-    email: "",
-    address: "",
-    pincode: "",
-    // payment: "",
+    paymentMethod: "",
   });
 
   const handleInputChange = (e) => {
@@ -31,37 +31,71 @@ const Payment = () => {
     });
   };
 
-  const handleOrderClick = () => {
-    // Validation logic
-    const messages = {};
-    let isValid = true;
-
-    for (const key in formData) {
-      if (!formData[key]) {
-        messages[key] = "";
-        isValid = false;
-      }
-    }
-    
-    setValidationMessages(messages);
-
-    if (isValid) {
+  const handleOrderClick = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
       Swal.fire({
         title: "Thank you!",
         text: "Your order has been placed",
         icon: "success",
         confirmButtonText: `<a href="/">Done</a>`,
       });
+    } else {
+      Swal.fire({
+        title: "Oops...",
+        text: "Please fill out all required fields correctly.",
+        icon: "error",
+      });
     }
+  };
+
+  const validateForm = () => {
+    const { fName, lName, contact, email, address, pincode, paymentMethod } =
+      formData;
+    return (
+      fName.trim() !== "" &&
+      lName.trim() !== "" &&
+      contact.trim().length === 10 &&
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
+      address.trim() !== "" &&
+      /^\d{6}$/.test(pincode) &&
+      paymentMethod !== ""
+    );
   };
 
   return (
     <>
       <div className="py-6 px-32">
         <div className="p-2">
-          <h1 className="text-4xl font-semibold text-center my-2 underline">
+          <h1 className="text-4xl font-semibold text-center my-4 underline">
             Checkout
           </h1>
+        </div>
+        <div className="flex w-2/3 flex-col  mx-auto ">
+          <h1 className="text-2xl text-gray-500 font-serif mx-auto">Your Order</h1>
+          {cart.map((item) => (
+            <div
+              key={item.id}
+              className="flex border-b-2 border-[#001F3F]"
+            >
+              <div className="flex justify-between items-center w-full ">
+                <img
+                  className="size-14 sm:size-20 lg:size-28 xl:size-32"
+                  alt="image"
+                  src={item.img}
+                />
+                <p className="font-semibold whitespace-nowrap lg:text-xl">
+                  {item.name}
+                </p>
+                <p>{item.amount}</p>
+                <p className="font-semibold lg:text-xl">₹{item.price}</p>
+              </div>
+            </div>
+          ))}
+          <div className="flex items-center gap-2">
+            <span>Total Price of Your Cart :-</span>
+            <span>₹{price}</span>
+          </div>
         </div>
         <div>
           <form className="flex gap-[4%]">
@@ -77,22 +111,18 @@ const Payment = () => {
                     type="text"
                     placeholder="First Name *"
                     required
+                    value={formData.fName}
                     onChange={handleInputChange}
                   />
-                  {validationMessages.fName && (
-                    <p className="text-red-500">{validationMessages.fName}</p>
-                  )}
                   <input
                     className="border border-black shadow-lg rounded-md p-2"
                     name="lName"
                     type="text"
                     placeholder="Last Name *"
                     required
+                    value={formData.lName}
                     onChange={handleInputChange}
                   />
-                  {validationMessages.lName && (
-                    <p className="text-red-500">{validationMessages.lName}</p>
-                  )}
                 </div>
                 <div>
                   <input
@@ -101,13 +131,11 @@ const Payment = () => {
                     type="tel"
                     placeholder="Contact number *"
                     required
-                    onChange={handleInputChange}
                     maxLength={10}
                     minLength={10}
+                    value={formData.contact}
+                    onChange={handleInputChange}
                   />
-                  {validationMessages.contact && (
-                    <p className="text-red-500">{validationMessages.contact}</p>
-                  )}
                 </div>
                 <div>
                   <input
@@ -116,11 +144,9 @@ const Payment = () => {
                     type="email"
                     placeholder="Email ID *"
                     required
+                    value={formData.email}
                     onChange={handleInputChange}
                   />
-                  {validationMessages.email && (
-                    <p className="text-red-500">{validationMessages.email}</p>
-                  )}
                 </div>
                 <div>
                   <textarea
@@ -130,11 +156,9 @@ const Payment = () => {
                     cols={20}
                     placeholder="Address *"
                     required
+                    value={formData.address}
                     onChange={handleInputChange}
                   />
-                  {validationMessages.address && (
-                    <p className="text-red-500">{validationMessages.address}</p>
-                  )}
                 </div>
                 <div>
                   <input
@@ -144,11 +168,9 @@ const Payment = () => {
                     placeholder="Pincode *"
                     pattern="[0-9]{6}"
                     required
+                    value={formData.pincode}
                     onChange={handleInputChange}
                   />
-                  {validationMessages.pincode && (
-                    <p className="text-red-500">{validationMessages.pincode}</p>
-                  )}
                 </div>
               </div>
             </div>
@@ -161,15 +183,15 @@ const Payment = () => {
                   <div className="flex gap-3">
                     <input
                       type="radio"
-                      name="payment"
+                      name="paymentMethod"
                       required
-                      
+                      onChange={handleInputChange}
                     />
                     <p className="font-semibold">Cash on delivery</p>
                   </div>
                   <BsCashCoin size={30} />
                 </div>
-                
+
                 <p className="text-sm">
                   By clicking the button, you agree to the{" "}
                   <span className="underline">Terms & Conditions</span> .
@@ -178,7 +200,7 @@ const Payment = () => {
                   <button
                     onClick={handleOrderClick}
                     className="bg-gradient-to-r from-[#0023FF] to-[#3342a1] transition-all duration-200 px-4 py-3 text-white justify-center flex w-full"
-                    type="button"
+                    type="submit"
                   >
                     Order
                   </button>
