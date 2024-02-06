@@ -65,19 +65,18 @@ const Payment = ({ cart }) => {
 
   return (
     <>
-      <div className="py-6 px-32">
+      <div className="px-3 flex flex-col gap-3 lg:w-2/3 mx-auto">
         <div className="p-2">
           <h1 className="text-4xl font-semibold text-center my-4 underline">
             Checkout
           </h1>
         </div>
-        <div className="flex w-2/3 flex-col  mx-auto ">
-          <h1 className="text-2xl text-gray-500 font-serif mx-auto">Your Order</h1>
+        <div className="flex w-full flex-col p-3 mx-auto bg-slate-100 ">
+          <h1 className="text-2xl text-gray-500 font-serif mx-auto">
+            Your Order
+          </h1>
           {cart.map((item) => (
-            <div
-              key={item.id}
-              className="flex border-b-2 border-[#001F3F]"
-            >
+            <div key={item.id} className="flex border-b-2 border-[#001F3F]">
               <div className="flex justify-between items-center w-full ">
                 <img
                   className="size-14 sm:size-20 lg:size-28 xl:size-32"
@@ -87,26 +86,26 @@ const Payment = ({ cart }) => {
                 <p className="font-semibold whitespace-nowrap lg:text-xl">
                   {item.name}
                 </p>
-                <p>{item.amount}</p>
+                <p>Qty. {item.amount}</p>
                 <p className="font-semibold lg:text-xl">₹{item.price}</p>
               </div>
             </div>
           ))}
-          <div className="flex items-center gap-2">
-            <span>Total Price of Your Cart :-</span>
+          <div className="flex justify-evenly items-center gap-2 text-sm md:text-base lg:text-xl font-semibold">
+            <span>Total Price of Your Cart</span>
             <span>₹{price}</span>
           </div>
         </div>
         <div>
-          <form className="flex gap-[4%]">
-            <div className="flex flex-col w-[48%] items-center gap-3">
+          <form className="flex flex-col md:flex-row mb-5 gap-9 md:gap-[4%]">
+            <div className="flex flex-col md:w-[48%] items-center gap-3">
               <h1 className="text-2xl text-gray-500 font-serif">
                 Shipping details
               </h1>
-              <div className="flex flex-col gap-5">
-                <div className="flex gap-2">
+              <div className="flex flex-col w-full gap-5">
+                <div className="flex flex-col md:flex-row gap-5 md:gap-2">
                   <input
-                    className="border border-black shadow-lg rounded-md p-2"
+                    className="border border-black shadow-lg w-full md:w-1/2 rounded-md p-2"
                     name="fName"
                     type="text"
                     placeholder="First Name *"
@@ -115,7 +114,7 @@ const Payment = ({ cart }) => {
                     onChange={handleInputChange}
                   />
                   <input
-                    className="border border-black shadow-lg rounded-md p-2"
+                    className="border border-black shadow-lg w-full md:w-1/2 rounded-md p-2"
                     name="lName"
                     type="text"
                     placeholder="Last Name *"
@@ -174,12 +173,12 @@ const Payment = ({ cart }) => {
                 </div>
               </div>
             </div>
-            <div className="w-[48%] flex flex-col items-center justify-start gap-10">
+            <div className="w-full md:w-[48%] mb-5 flex flex-col  items-center justify-start gap-10">
               <h1 className="text-2xl text-gray-500 font-serif">
                 Payment method
               </h1>
               <div className="flex flex-col items-center gap-4 w-full">
-                <div className="flex justify-between border border-black shadow-lg rounded-md p-2 w-2/3">
+                <div className="flex justify-between border border-black shadow-lg rounded-md p-2 w-full md:w-2/3">
                   <div className="flex gap-3">
                     <input
                       type="radio"
@@ -192,7 +191,7 @@ const Payment = ({ cart }) => {
                   <BsCashCoin size={30} />
                 </div>
 
-                <p className="text-sm">
+                <p className="text-xs lg:text-sm">
                   By clicking the button, you agree to the{" "}
                   <span className="underline">Terms & Conditions</span> .
                 </p>
