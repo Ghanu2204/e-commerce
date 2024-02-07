@@ -3,7 +3,7 @@ import { LuMailOpen } from "react-icons/lu";
 
 const NewsLetter = () => {
   return (
-    <div className="bg-stone-100 dark:bg-gray-800 dark:text-white pt-16">
+    <div className="bg-stone-100 dark:bg-gray-800 dark:text-white py-16">
       <div className="bg-[#001F3F] dark:bg-[#87CEEB] ">
         <div className="container py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-white dark:text-black">
           <div className="flex flex-shrink-0 gap-4 items-center">

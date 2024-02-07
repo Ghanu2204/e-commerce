@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BsCashCoin } from "react-icons/bs";
 import Swal from "sweetalert2";
+import Footer from "../components/Footer";
 
 const Payment = ({ cart }) => {
   const [price, setPrice] = useState(0);
@@ -65,7 +66,7 @@ const Payment = ({ cart }) => {
 
   return (
     <>
-      <div className="px-3 flex flex-col gap-3 lg:w-2/3 mx-auto">
+      <div className="px-3 pb-20 flex flex-col gap-3 lg:w-2/3 mx-auto">
         <div className="p-2">
           <h1 className="text-4xl font-semibold text-center my-4 underline">
             Checkout
@@ -209,6 +210,7 @@ const Payment = ({ cart }) => {
           </form>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

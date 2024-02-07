@@ -17,7 +17,7 @@ const Menu = [
   {
     id: 4,
     name: "Contact",
-    link: "/#",
+    link: "/contact",
   },
 ];
 export default Menu;
